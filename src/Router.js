@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
-import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import { Router as BrowserRouter, Route, Switch } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import createBrowserHistory from 'history/createBrowserHistory'
 import storeConfigurator from 'services/ReduxStoreConfigurator'
 import { Login } from 'screens/Login'
+import PrivateRoute from 'connectors/PrivateRoute'
 
 const store = storeConfigurator.configureStore()
 
@@ -17,6 +18,7 @@ class Router extends Component {
         <BrowserRouter history={history}>
           <Switch>
             <Route exact path='/login' component={Login} />
+            <PrivateRoute exact path="/" component={() => <div>HOME PAGE</div>} />
           </Switch>
         </BrowserRouter>
       </Provider>
