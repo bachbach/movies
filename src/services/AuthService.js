@@ -16,9 +16,9 @@ class AuthService {
     this.storageService.set('token', token)
   }
 
-  async login (username, password) {
+  async login (login, password) {
     const response = await this.api.post(`/auth/login`, {
-      username,
+      login,
       password
     })
 

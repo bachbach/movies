@@ -12,9 +12,8 @@ const loginUserError = (error) => ({ type: LOGIN_USER_ERROR, error })
 export const loginUser = ({ email, password }) => {
   return async dispatch => {
     try {
-      console.log('here')
       await authService.login(email, password)
-
+      
       dispatch(loginUserSuccess(email))
       return email
     } catch (e) {

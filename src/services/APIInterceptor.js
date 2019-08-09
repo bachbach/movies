@@ -8,6 +8,7 @@ class APIInterceptor {
       baseURL: this.baseURL,
       headers: {
         Accept: 'application/json',
+        'Content-Type': 'application/json'
       }
     }
 
@@ -17,6 +18,10 @@ class APIInterceptor {
 
   get (url) {
     return this.api.get(url)
+  }
+
+  post (url, payload) {
+    return this.api.post(url, payload)
   }
 }
 
