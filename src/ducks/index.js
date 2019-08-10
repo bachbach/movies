@@ -1,10 +1,12 @@
 import { combineReducers } from 'redux'
 import user from './user'
 import errors from './errors'
+import movies from './movies'
 
 const appReducer = combineReducers({
   user,
-  errors
+  errors,
+  movies
 })
 
 const rootReducer = (state, action) => {

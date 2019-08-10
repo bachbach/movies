@@ -1,10 +1,19 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
-const Movies = () => {
-  console.log('was')
+const Movies = (props) => {
+  useEffect(() => {
+    props.getMovies()
+  }, [])
+
   return (
     <div>
-      Movies screen
+      {
+        props.movies.map(movie => (
+          <div key={movie.id}>
+            <span>{movie.title}</span>
+          </div>
+        ))
+      }
     </div>
   )
 }

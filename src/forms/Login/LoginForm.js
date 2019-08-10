@@ -9,7 +9,6 @@ const Login = ({ login, ...rest }) => {
     await login(values)
     setSubmitting(false)
     rest.history.push('/')
-
   }
 
   return (
