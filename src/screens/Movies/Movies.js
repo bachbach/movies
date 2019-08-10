@@ -1,19 +1,19 @@
 import React, { useEffect } from 'react'
+import { Table } from 'components/Table'
 
 const Movies = (props) => {
   useEffect(() => {
     props.getMovies()
   }, [])
 
+  const headers = [ 'title', 'metascore', 'year' ]
+
   return (
     <div>
-      {
-        props.movies.map(movie => (
-          <div key={movie.id}>
-            <span>{movie.title}</span>
-          </div>
-        ))
-      }
+      <Table
+        items={props.movies}
+        headers={headers}
+      />
     </div>
   )
 }
