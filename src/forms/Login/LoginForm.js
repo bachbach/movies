@@ -2,12 +2,14 @@ import React from 'react'
 import { Form, Formik } from 'formik'
 import validate from './validators'
 
-const Login = ({ login }) => {
+const Login = ({ login, ...rest }) => {
   const intialValues = { email: "", password: "" }
 
   const handleSubmit = async (values, { setSubmitting }) => {
     await login(values)
     setSubmitting(false)
+    rest.history.push('/')
+
   }
 
   return (

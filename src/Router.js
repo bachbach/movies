@@ -4,6 +4,7 @@ import { Provider } from 'react-redux'
 import createBrowserHistory from 'history/createBrowserHistory'
 import storeConfigurator from 'services/ReduxStoreConfigurator'
 import { Login } from 'screens/Login'
+import { Dashboard } from 'screens/Dashboard'
 import PrivateRoute from 'connectors/PrivateRoute'
 
 const store = storeConfigurator.configureStore()
@@ -18,7 +19,7 @@ class Router extends Component {
         <BrowserRouter history={history}>
           <Switch>
             <Route exact path='/login' component={Login} />
-            <PrivateRoute exact path="/" component={() => <div>HOME PAGE</div>} />
+            <PrivateRoute exact path="/" component={Dashboard} />
           </Switch>
         </BrowserRouter>
       </Provider>

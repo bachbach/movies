@@ -4,9 +4,9 @@ const authService = new AuthService()
 
 export const LOGIN_USER_SUCCESS = Symbol('LOGIN_USER_SUCCESS')
 export const LOGIN_USER_ERROR = Symbol('LOGIN_USER_ERROR')
+export const LOG_OUT_USER_SUCCESS = Symbol('LOG_OUT_USER_SUCCESS')
 
 const loginUserSuccess = (token) => ({ type: LOGIN_USER_SUCCESS, token })
-
 const loginUserError = (error) => ({ type: LOGIN_USER_ERROR, error })
 
 export const loginUser = ({ email, password }) => {
@@ -20,6 +20,17 @@ export const loginUser = ({ email, password }) => {
       console.log(e)
       return dispatch(loginUserError(e.response.data))
     }
+  }
+}
+
+const logoutUserSuccess = () => ({ type: LOGIN_USER_SUCCESS })
+
+export function logout () {
+  return (dispatch) => {
+    authService.storageService.rm('token')
+    authService.storageService.rm('user')
+
+    return dispatch(logoutUserSuccess())
   }
 }
 
