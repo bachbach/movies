@@ -21,6 +21,8 @@ const Movies = (props) => {
     props.getMovies(`limit=${perPage}&page=${currentPage + 1}&sortBy=${column}&sortDir=${dir}`)
   )
 
+  const onClickRow = (movie) => props.history.push(`/movies/${movie._id}`)
+
   return (
     <div>
       <Table
@@ -29,6 +31,7 @@ const Movies = (props) => {
         showOrdinal
         sortableColumns={headers}
         sort={sort}
+        onClickRow={onClickRow}
       />
       <ReactPaginate
           pageCount={pageCount}

@@ -29,9 +29,14 @@ const Table = props => {
     <td key={`table-cell-${index + 1}`}>{item[header]}</td>
   ))
 
+  const onClickRow = item => () => props.onClickRow(item)  
+
   const getBody = () => {
     return props.items.map((item, index) => (
-      <tr key={`table-row-${index + 1}`}>
+      <tr
+        key={`table-row-${index + 1}`}
+        onClick={onClickRow(item)}
+      >
         {
           props.showOrdinal
           ? [ <td key="table-row-0">{index + 1}</td>, ...getCell(item) ]
@@ -56,7 +61,8 @@ const Table = props => {
 }
 
 Table.defaultProps = {
-  sort: () => {}
+  sort: () => {},
+  onClickRow: () => {}
 }
 
 Table.propTypes = {
@@ -64,7 +70,8 @@ Table.propTypes = {
   items: PropTypes.array.isRequired,
   showOrdinal: PropTypes.bool,
   sortableColumns: PropTypes.array,
-  sort: PropTypes.func
+  sort: PropTypes.func,
+  onClickRow: PropTypes.func
 }
 
 export default Table

@@ -5,7 +5,11 @@ export default class MoviesService {
     this.api = api
   }
 
-  getMovies (query = '') {
+  getMovies(query = '') {
     return this.api.get(`/movies?${query}`)
+  }
+
+  getMovie(id) {
+    return this.api.get(`/movies/${id}`)
   }
 }
