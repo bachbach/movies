@@ -4,11 +4,11 @@ import { Movie } from 'screens/Movie'
 import { getMovieIfNeeded } from 'ducks/movies'
 
 const mapStateoToProps = (state, ownProps) => ({
-  movie: state.movies.entries[ownProps.id]
+  movie: state.movies.entries[ownProps.match.params.id]
 })
 
 const mapDispatchToProps = dispatch => ({
   getMovie: (id) => dispatch(getMovieIfNeeded(id))
 })
 
-export default connect(mapStateoToProps, mapDispatchToProps)(withRouter(Movie))
+export default withRouter(connect(mapStateoToProps, mapDispatchToProps)(Movie))

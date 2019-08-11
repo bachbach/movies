@@ -21,7 +21,7 @@ const Movies = (props) => {
     props.getMovies(`limit=${perPage}&page=${currentPage + 1}&sortBy=${column}&sortDir=${dir}`)
   )
 
-  const onClickRow = (movie) => props.history.push(`/movies/${movie._id}`)
+  const onClickRow = (movie) => props.history.push(`/movies/${movie.imdbId}`)
 
   return (
     <div>

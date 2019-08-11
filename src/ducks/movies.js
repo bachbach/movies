@@ -29,8 +29,6 @@ const getMovieError = (error) => ({ type: GET_MOVIE_ERROR, error })
 
 export const getMovieIfNeeded = (id) => {
   return (dispatch, getState) => {
-    console.log('fetchIfNeed', getState().movies.entries)
-    console.log(id)
     if (!getState().movies.entries[id]) {
       return dispatch(getMovie(id))
     }
@@ -61,9 +59,17 @@ export default (state = initState, action) => {
     case GET_MOVIES_SUCCESS:
       return {
         ...state,
-        entries: transformById(action.movies.collection, '_id'),
+        entries: transformById(action.movies.collection, 'imdbId'),
         total: action.movies.total
       }
+    case GET_MOVIE_SUCCESS:
+      return {
+        ...state,
+        entries: {
+          ...state.entries,
+          [action.movie.imdbId]: action.movie
+        }
+      }  
     default:
       return state
   }

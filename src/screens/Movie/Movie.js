@@ -1,27 +1,37 @@
 import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
 
-const Movie = props => {
+const Movie = ({ movie, match, getMovie }) => {
   useEffect(() => {
-    console.log(props)
-    props.getMovie(props.match.params.id)
+    getMovie(match.params.id)
   }, [])
-
+  console.log(movie)
   return (
     <div>
-      hello from movie screen!
+      <div>
+        <div>Title:</div>
+        <div>{movie.title}</div>
+        <div>Director:</div>
+        <div>{movie.director}</div>
+        <div>Year:</div>
+        <div>{movie.year}</div>
+        <div>Metascore:</div>
+        <div>{movie.metascore}</div>
+        <img src={movie.postUrl} alt="post url"/>
+      </div>
     </div>
   )
 }
 
 Movie.defaultProps = {
   movie: {
-    _id: ''
+    imdbId: ''
   }
 }
 
 Movie.propTypes = {
-  movie: PropTypes.object
+  movie: PropTypes.object,
+  getMovie: PropTypes.func.isRequired
 }
 
 export default Movie
