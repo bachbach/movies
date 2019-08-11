@@ -6,17 +6,20 @@ import { Table } from 'components/Table'
 const perPage = 5
 
 const Movies = (props) => {
+  const [currentPage, setCurrentPage] = useState(0)
+
   useEffect(() => {
-    props.getMovies(`limit=${perPage}`)
-  }, [])
+    props.getMovies(`limit=${perPage}&page=${currentPage + 1}`)
+  }, [currentPage])
 
   const headers = [ 'title', 'metascore', 'year' ]
   const pageCount = props.total / perPage
 
-  const handlePageClick = data => {
-    let selected = data.selected
-    props.getMovies(`limit=${perPage}&page=${selected + 1}`);
-  };
+  const handlePageClick = data => setCurrentPage(data.selected)
+
+  const sort = (column, dir) => (
+    props.getMovies(`limit=${perPage}&page=${currentPage + 1}&sortBy=${column}&sortDir=${dir}`)
+  )
 
   return (
     <div>
@@ -24,17 +27,14 @@ const Movies = (props) => {
         items={props.movies}
         headers={headers}
         showOrdinal
+        sortableColumns={headers}
+        sort={sort}
       />
       <ReactPaginate
           pageCount={pageCount}
           onPageChange={handlePageClick}
           previousLabel={'previous'}
           nextLabel={'next'}
-          // breakLabel={'...'}
-          // breakClassName={'break-me'}
-          // containerClassName={'pagination'}
-          // subContainerClassName={'pages pagination'}
-          // activeClassName={'active'}
       />
     </div>
   )
