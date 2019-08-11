@@ -9,10 +9,10 @@ export const GET_MOVIES_ERROR = Symbol('GET_MOVIES_ERROR')
 const getMoviesSuccess = (movies) => ({ type: GET_MOVIES_SUCCESS, movies })
 const getMoviesError = (error) => ({ type: GET_MOVIES_ERROR, error })
 
-export const getMovies = () => {
+export const getMovies = (query) => {
   return async dispatch => {
     try {
-      const { data } = await moviesService.getMovies()
+      const { data } = await moviesService.getMovies(query)
       
       dispatch(getMoviesSuccess(data))
       return data
@@ -23,7 +23,8 @@ export const getMovies = () => {
 }
 
 const initState = {
-  entries: {}
+  entries: {},
+  total: 0
 }
 
 export default (state = initState, action) => {
@@ -31,7 +32,8 @@ export default (state = initState, action) => {
     case GET_MOVIES_SUCCESS:
       return {
         ...state,
-        entries: transformById(action.movies.collection, '_id')
+        entries: transformById(action.movies.collection, '_id'),
+        total: action.movies.total
       }
     default:
       return state
