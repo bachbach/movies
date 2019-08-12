@@ -5,7 +5,7 @@ const Movie = ({ movie, match, getMovie }) => {
   useEffect(() => {
     getMovie(match.params.id)
   }, [])
-  console.log(movie)
+  console.log(movie.postUrl)
   return (
     <div>
       <div>
@@ -17,7 +17,7 @@ const Movie = ({ movie, match, getMovie }) => {
         <div>{movie.year}</div>
         <div>Metascore:</div>
         <div>{movie.metascore}</div>
-        <img src={movie.postUrl} alt="post url"/>
+        <img src={movie.posterUrl} alt="post url"/>
       </div>
     </div>
   )
