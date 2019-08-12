@@ -1,6 +1,9 @@
 import React from 'react'
 import { Form, Formik } from 'formik'
+import cx from 'classnames'
 import validate from './validators'
+import { PrimaryButton, SecondaryButton } from 'components/Button/Button'
+import './LoginForm.scss'
 
 const Login = ({ login, ...rest }) => {
   const intialValues = { email: "", password: "" }
@@ -11,6 +14,11 @@ const Login = ({ login, ...rest }) => {
     rest.history.push('/')
   }
 
+  const inputClass = (props, field) => cx({
+    'input': true,
+    'input__error': props.errors[field] && props.touched[field]
+  })
+
   return (
     <Formik
       initialValues={intialValues}
@@ -18,54 +26,54 @@ const Login = ({ login, ...rest }) => {
       onSubmit={handleSubmit}
     >
       {props => (
-        <Form>
-          <label htmlFor="email">Email</label>
-          <div>
-            <input
-              name="email"
-              type="email"
-              placeholder="Enter your account email"
-              value={props.values.email}
-              onChange={props.handleChange}
-              onBlur={props.handleBlur}
-              style={{
-                borderColor:
-                  props.errors.email && props.touched.email && "red"
-              }}
-            />
-            {props.errors.email && props.touched.email && (
-              <div style={{ color: "red" }}>{props.errors.email}</div>
-            )}
+        <Form className='login-form'>
+          <div className='login-form__form-group'>
+            <label className='label' className='label' htmlFor='email'>Email</label>
+            <div>
+              <input
+                name='email'
+                type='email'
+                placeholder='Enter your account email'
+                value={props.values.email}
+                onChange={props.handleChange}
+                onBlur={props.handleBlur}
+                className={inputClass(props, 'email')}
+              />
+              <div className='error'>{props.errors.email}</div>
+            </div>
           </div>
-          <label htmlFor="password">Password</label>
-          <div>
-            <input
-              name="password"
-              type="password"
-              placeholder="Enter your account password"
-              value={props.values.password}
-              onChange={props.handleChange}
-              onBlur={props.handleBlur}
-              style={{
-                borderColor:
-                  props.errors.password && props.touched.password && "red"
-              }}
-            />
-            {props.errors.password && props.touched.password && (
-              <div style={{ color: "red" }}>{props.errors.password}</div>
-            )}
+          <div className='login-form__form-group'>
+            <label className='label' htmlFor='password'>Password</label>
+            <div>
+              <input
+                name='password'
+                type='password'
+                placeholder='Enter your account password'
+                value={props.values.password}
+                onChange={props.handleChange}
+                onBlur={props.handleBlur}
+                className={inputClass(props, 'password')}
+              />
+              <div className='error'>{props.errors.password}</div>
+            </div>
           </div>
-          <input
-            type="submit"
-            value="Submit"
-            disabled={props.isSubmitting}
-          />
-          <input
-            type="reset"
-            value="Reset"
-            onClick={props.handleReset}
-            disabled={!props.dirty || props.isSubmitting}
-          />
+          <div className="login-form__buttons-group">
+            <PrimaryButton
+              type='submit'
+              value='Submit'
+              disabled={props.isSubmitting}
+            >
+              Sumbit
+            </PrimaryButton>
+            <SecondaryButton
+              type='reset'
+              value='Reset'
+              onClick={props.handleReset}
+              disabled={!props.dirty || props.isSubmitting}
+            >
+              Reset
+            </SecondaryButton>
+          </div>
         </Form>
       )}
     </Formik>

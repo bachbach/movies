@@ -1,9 +1,10 @@
 import React from 'react'
 import LoginForm from 'connectors/LoginForm'
+import './Login.scss'
 
 const Login = () => {
   return (
-    <div>
+    <div className="login">
       <LoginForm />
     </div>
   )

@@ -1,0 +1,28 @@
+.login-form {
+  .login-form__form-group {
+    display:flex;
+    margin-bottom: 8px;
+  
+    & .label, .input {
+      flex: 1;
+    }
+  
+    & .label {
+      margin-right: 16px;
+    }
+  }
+
+  .error {
+    font-size: 10px;
+    color: red;
+    min-height: 12px;
+  }
+
+  .input__error {
+    border-color: red;
+  }
+
+  .login-form__buttons-group button:first-child {
+    margin-right: 16px;
+  }
+}

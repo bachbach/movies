@@ -5,6 +5,7 @@ import Navbar from 'connectors/Navbar'
 import Movies from 'connectors/Movies'
 import Movie from 'connectors/Movie'
 import { APIInterceptor } from 'services/APIInterceptor'
+import './Dashboard.scss'
 
 const Dashboard = props => {
   const logout = () => {
