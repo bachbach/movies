@@ -1,21 +1,27 @@
 .table {
   width: 100%;
   background-color: #ffffff;
-  border-collapse: collapse;
-  border-width: 2px;
-  border-color: #ffcc00;
-  border-style: solid;
+  border-style: none;
   color: #000000;
 }
 
 .table td, .table th {
   border-width: 2px;
-  border-color: #ffcc00;
-  border-style: solid;
-  padding: 3px;
+  border-style: none;
+  padding: 8px;
 }
 
-.table thead {
-  background-color: #ffcc00;
+td {
+  border-style: solid none;
+  padding: 10px;
+  background-color: #F6F4FA;
 }
+// td:first-child {
+//   border-top-left-radius: 4px; 
+//   border-bottom-left-radius: 4px;
+// }
+// td:last-child {
+//   border-bottom-right-radius: 4px; 
+//   border-top-right-radius: 4px; 
+// }
 

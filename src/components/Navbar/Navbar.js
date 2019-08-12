@@ -1,5 +1,6 @@
 import React from 'react'
 import { PrimaryButton } from 'components/Button'
+import './Navbar.scss'
 
 const Navbar = (props) => {
   const handleLogout = () => {
@@ -8,7 +9,7 @@ const Navbar = (props) => {
   }
 
   return (
-    <div>
+    <div className='navbar'>
       <PrimaryButton
         onClick={handleLogout}
         type='button'
