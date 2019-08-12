@@ -4,7 +4,7 @@ import { Provider } from 'react-redux'
 import createBrowserHistory from 'history/createBrowserHistory'
 import storeConfigurator from 'services/ReduxStoreConfigurator'
 import { Login } from 'screens/Login'
-import { Dashboard } from 'screens/Dashboard'
+import Dashboard from 'connectors/Dashboard'
 import PrivateRoute from 'connectors/PrivateRoute'
 
 const store = storeConfigurator.configureStore()

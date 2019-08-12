@@ -1,4 +1,5 @@
 import axios from 'axios'
+import mitt from 'mitt'
 import appRegistry from './AppRegistry'
 
 class APIInterceptor {
@@ -16,8 +17,19 @@ class APIInterceptor {
     }
 
     this.api = axios.create(config)
+    this.api.interceptors.response.use(
+      successRes => successRes,
+      error => {
+        if (error.response && error.response.status === 401) {
+          APIInterceptor.events.emit('authorizationError', { err: error })
+        }
+
+        return Promise.reject(error)
+      }
+    )
   }
 
+  static events = mitt()
 
   get (url) {
     return this.api.get(url)
