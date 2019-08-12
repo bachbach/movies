@@ -2,7 +2,7 @@ import React from 'react'
 import { Form, Formik } from 'formik'
 import cx from 'classnames'
 import validate from './validators'
-import { PrimaryButton, SecondaryButton } from 'components/Button/Button'
+import { PrimaryButton, SecondaryButton } from 'components/Button'
 import './LoginForm.scss'
 
 const Login = ({ login, ...rest }) => {

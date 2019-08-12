@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
-import { Switch, Route } from 'react-router-dom'
+import { Switch, Route, Redirect } from 'react-router-dom'
 import Navbar from 'connectors/Navbar'
 import Movies from 'connectors/Movies'
 import Movie from 'connectors/Movie'
@@ -23,6 +23,7 @@ const Dashboard = props => {
     <div>
       <Navbar />
       <Switch>
+        <Route exact path='/' render={() => <Redirect to='/movies' />} />
         <Route exact path='/movies' component={Movies}/>
         <Route exact path='/movies/:id' component={Movie} />
       </Switch>
