@@ -14,6 +14,8 @@ const Dashboard = props => {
 
   useEffect(() => {
     APIInterceptor.events.on('authorizationError', logout)
+
+    return () => APIInterceptor.events.off('authorizationError')
   }, [])
 
   return (
