@@ -9,8 +9,8 @@ const Table = props => {
   const getHeader = (header) => props.sortableColumns.indexOf(header) >= 0
   ? <span>
       {header}
-      <span onClick={sort(header, 1)}>&#9650;</span>
-      <span onClick={sort(header, -1)}>&#9660;</span>
+      <span className='table__sort-button' onClick={sort(header, 1)}>&#9650;</span>
+      <span className='table__sort-button' onClick={sort(header, -1)}>&#9660;</span>
     </span>
   : <span>{header}</span>
 
