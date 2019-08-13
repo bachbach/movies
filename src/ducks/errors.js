@@ -1,3 +1,5 @@
+//@TODO handle errors
+
 const initState = {
   entries: {}
 }
