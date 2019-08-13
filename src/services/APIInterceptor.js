@@ -5,18 +5,12 @@ import appRegistry from './AppRegistry'
 class APIInterceptor {
   constructor (baseURL = `${process.env.REACT_APP_API_URL}/${process.env.REACT_APP_API_VERSION}`) {
     this.baseURL = baseURL
-    const token = appRegistry.storage.get('token')
 
-    const config = {
-      baseURL: this.baseURL,
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`
-      }
+    const settings = {
+      baseURL: this.baseURL
     }
 
-    this.api = axios.create(config)
+    this.api = axios.create(settings)
     this.api.interceptors.response.use(
       successRes => successRes,
       error => {
@@ -32,11 +26,24 @@ class APIInterceptor {
   static events = mitt()
 
   get (url) {
-    return this.api.get(url)
+    return this.api.get(url, this.mergeConfig())
   }
 
   post (url, payload) {
-    return this.api.post(url, payload)
+    return this.api.post(url, payload, this.mergeConfig())
+  }
+
+  mergeConfig (config = {}) {
+    const token = appRegistry.storage.get('token')
+
+    return Object.assign({}, config, {
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+        ...config.headers
+      }
+    })
   }
 }
 

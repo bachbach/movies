@@ -20,7 +20,7 @@ const Dashboard = props => {
   }, [])
 
   return (
-    <div>
+    <div className="dashboard">
       <Navbar />
       <Switch>
         <Route exact path='/' render={() => <Redirect to='/movies' />} />
