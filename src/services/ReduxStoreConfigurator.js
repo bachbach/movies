@@ -1,4 +1,4 @@
-import { createStore, applyMiddleware } from 'redux'
+import { createStore, applyMiddleware, compose } from 'redux'
 import thunkMiddleware from 'redux-thunk'
 import { createLogger } from 'redux-logger'
 import rootReducer from 'ducks/index'
@@ -6,17 +6,18 @@ import rootReducer from 'ducks/index'
 class ReduxStoreConfigurator {
   constructor () {
     this.middlewares = [thunkMiddleware]
-    if (process.env.NODE_ENV === 'development') {
-      this.middlewares.push(createLogger())
-    }
   }
 
   configureStore (initialState) {
+    const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
     this.store = createStore(
       rootReducer,
-      applyMiddleware(...this.middlewares),
+      /* preloadedState, */
+      composeEnhancers(
+        applyMiddleware(...this.middlewares)
+      ),
       initialState
-    )
+    );
 
     return this.store
   }

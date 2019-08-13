@@ -3,13 +3,15 @@ import { transformById } from 'helpers/redux'
 
 const moviesService = new MoviesService()
 
-export const GET_MOVIES_SUCCESS = Symbol('GET_MOVIES_SUCCESS')
-export const GET_MOVIES_ERROR = Symbol('GET_MOVIES_ERROR')
-export const GET_MOVIE_SUCCESS = Symbol('GET_MOVIE_SUCCESS')
-export const GET_MOVIE_ERROR = Symbol('GET_MOVIE_ERROR')
+export const actions = {
+  GET_MOVIES_SUCCESS: Symbol('GET_MOVIES_SUCCESS'),
+  GET_MOVIES_ERROR: Symbol('GET_MOVIES_ERROR'),
+  GET_MOVIE_SUCCESS: Symbol('GET_MOVIE_SUCCESS'),
+  GET_MOVIE_ERROR: Symbol('GET_MOVIE_ERROR')
+}
 
-const getMoviesSuccess = (movies) => ({ type: GET_MOVIES_SUCCESS, movies })
-const getMoviesError = (error) => ({ type: GET_MOVIES_ERROR, error })
+const getMoviesSuccess = (movies) => ({ type: actions.GET_MOVIES_SUCCESS, movies })
+const getMoviesError = (error) => ({ type: actions.GET_MOVIES_ERROR, error })
 
 export const getMovies = (query) => {
   return async dispatch => {
@@ -24,8 +26,8 @@ export const getMovies = (query) => {
   }
 }
 
-const getMovieSuccess = (movie) => ({ type: GET_MOVIE_SUCCESS, movie })
-const getMovieError = (error) => ({ type: GET_MOVIE_ERROR, error })
+const getMovieSuccess = (movie) => ({ type: actions.GET_MOVIE_SUCCESS, movie })
+const getMovieError = (error) => ({ type: actions.GET_MOVIE_ERROR, error })
 
 export const getMovieIfNeeded = (id) => {
   return (dispatch, getState) => {
@@ -56,13 +58,13 @@ const initState = {
 export default (state = initState, action) => {
   switch (action.type) {
     //@TODO do not override movies, add fetchIfNeed for list to keep pagination and sorting in reducer
-    case GET_MOVIES_SUCCESS:
+    case actions.GET_MOVIES_SUCCESS:
       return {
         ...state,
         entries: transformById(action.movies.collection, 'imdbId'),
         total: action.movies.total
       }
-    case GET_MOVIE_SUCCESS:
+    case actions.GET_MOVIE_SUCCESS:
       return {
         ...state,
         entries: {
