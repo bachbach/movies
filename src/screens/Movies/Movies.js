@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import ReactPaginate from 'react-paginate'
 import PropTypes from 'prop-types'
 import { Table } from 'components/Table'
+import { Pagination } from 'components/Pagination'
 import './Movies.scss'
 
 const perPage = 5
@@ -16,7 +16,7 @@ const Movies = (props) => {
   const headers = [ 'title', 'metascore', 'year' ]
   const pageCount = props.total / perPage
 
-  const handlePageClick = data => setCurrentPage(data.selected)
+  const onPageChange = data => setCurrentPage(data.selected)
 
   const sort = (column, dir) => (
     props.getMovies(`limit=${perPage}&page=${currentPage + 1}&sortBy=${column}&sortDir=${dir}`)
@@ -34,22 +34,10 @@ const Movies = (props) => {
         sort={sort}
         onClickRow={onClickRow}
       />
-      <div className='movies-paginate'>
-        <ReactPaginate
-          pageCount={pageCount}
-          onPageChange={handlePageClick}
-          containerClassName='pagination__container'
-          activeClassName='pagination__page--active'
-          pageClassName='pagination__page'
-          nextClassName='pagination__nav pagination__nav--next'
-          previousClassName='pagination__nav pagination__nav--previous'
-          disabledClassName='pagination__nav--disabled'
-          nextLinkClassName='pagination__nav__link pagination__nav__link--next'
-          previousLinkClassName='pagination__nav__link pagination__nav__link--previous'
-          previousLabel={'‹'}
-          nextLabel={'›'}
-        />
-      </div>
+      <Pagination
+        pageCount={pageCount}
+        onPageChange={onPageChange}
+      />
     </div>
   )
 }
