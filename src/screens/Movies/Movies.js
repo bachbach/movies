@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import ReactPaginate from 'react-paginate'
 import PropTypes from 'prop-types'
 import { Table } from 'components/Table'
+import './Movies.scss'
 
 const perPage = 5
 
@@ -24,7 +25,7 @@ const Movies = (props) => {
   const onClickRow = (movie) => props.history.push(`/movies/${movie.imdbId}`)
 
   return (
-    <div>
+    <div className='movies'>
       <Table
         items={props.movies}
         headers={headers}
@@ -33,12 +34,22 @@ const Movies = (props) => {
         sort={sort}
         onClickRow={onClickRow}
       />
-      <ReactPaginate
+      <div className='movies-paginate'>
+        <ReactPaginate
           pageCount={pageCount}
           onPageChange={handlePageClick}
-          previousLabel={'previous'}
-          nextLabel={'next'}
-      />
+          containerClassName='pagination__container'
+          activeClassName='pagination__page--active'
+          pageClassName='pagination__page'
+          nextClassName='pagination__nav pagination__nav--next'
+          previousClassName='pagination__nav pagination__nav--previous'
+          disabledClassName='pagination__nav--disabled'
+          nextLinkClassName='pagination__nav__link pagination__nav__link--next'
+          previousLinkClassName='pagination__nav__link pagination__nav__link--previous'
+          previousLabel={'‹'}
+          nextLabel={'›'}
+        />
+      </div>
     </div>
   )
 }
