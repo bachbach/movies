@@ -1,0 +1,34 @@
+.movie {
+  padding: 0 4%;
+}
+
+.movie__details {
+  display: flex;
+  justify-content: space-between;
+}
+
+.movie__details__item {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas: "label value" ". ." ". .";
+}
+
+.label {
+  grid-area: label;
+}
+
+.value {
+  grid-area: value;
+}
+
+.movie__details__list {
+  padding-right: 5px;
+}
+
+.movie__details__list:after {
+  content: ','
+}
+
+.movie__details__list:last-child:after {
+  content: ''
+}
