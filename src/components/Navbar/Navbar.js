@@ -9,7 +9,7 @@ const Navbar = (props) => {
   }
 
   return (
-    <div className='navbar'>
+    <div className="navbar">
       <PrimaryButton
         onClick={handleLogout}
         type='button'

@@ -15,60 +15,60 @@ const Login = ({ login, ...rest }) => {
   }
 
   const inputClass = (props, field) => cx({
-    'input': true,
-    'input__error': props.errors[field] && props.touched[field]
+    "input": true,
+    "input__error": props.errors[field] && props.touched[field]
   })
 
   return (
-    <div className='login-form__container'>
+    <div className="login-form__container">
       <Formik
         initialValues={intialValues}
         validate={validate}
         onSubmit={handleSubmit}
       >
         {props => (
-          <Form className='login-form'>
-            <div className='login-form__form-group'>
-              <label className='label' className='label' htmlFor='email'>Email</label>
+          <Form className="login-form">
+            <div className="login-form__form-group">
+              <label className="label" className="label" htmlFor="email">Email</label>
               <div>
                 <input
-                  name='email'
-                  type='email'
-                  placeholder='Enter your account email'
+                  name="email"
+                  type="email"
+                  placeholder="Enter your account email"
                   value={props.values.email}
                   onChange={props.handleChange}
                   onBlur={props.handleBlur}
-                  className={inputClass(props, 'email')}
+                  className={inputClass(props, "email")}
                 />
-                <div className='error'>{props.errors.email}</div>
+                <div className="error">{props.errors.email}</div>
               </div>
             </div>
-            <div className='login-form__form-group'>
-              <label className='label' htmlFor='password'>Password</label>
+            <div className="login-form__form-group">
+              <label className="label" htmlFor="password">Password</label>
               <div>
                 <input
-                  name='password'
-                  type='password'
-                  placeholder='Enter your account password'
+                  name="password"
+                  type="password"
+                  placeholder="Enter your account password"
                   value={props.values.password}
                   onChange={props.handleChange}
                   onBlur={props.handleBlur}
-                  className={inputClass(props, 'password')}
+                  className={inputClass(props, "password")}
                 />
-                <div className='error'>{props.errors.password}</div>
+                <div className="error">{props.errors.password}</div>
               </div>
             </div>
             <div className="login-form__buttons-group">
               <PrimaryButton
-                type='submit'
-                value='Submit'
+                type="submit"
+                value="Submit"
                 disabled={props.isSubmitting}
               >
                 Sumbit
               </PrimaryButton>
               <SecondaryButton
-                type='button'
-                value='Reset'
+                type="button"
+                value="Reset"
                 onClick={props.handleReset}
                 disabled={!props.dirty || props.isSubmitting}
               >

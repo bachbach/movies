@@ -33,10 +33,10 @@
 
   a {
     display: block;
-    color: black;
+    color: #000;
     cursor: pointer;
     text-align: center;
-    background-color: white;
+    background-color: #fff;
     border: 1px solid #ced0da;
     border-radius: 4px;
     width: 24px;
@@ -50,7 +50,7 @@
 
   a {
     background-color: #313d4f;
-    color: white;
+    color: #fff;
     border-color: #ced0da;
   }
 
@@ -58,7 +58,7 @@
 
 .pagination__nav {
   cursor: pointer;
-  background-color: white;
+  background-color: #fff;
   font-size: 16px;
   padding: 4px;
   border-radius: 4px;
@@ -68,7 +68,7 @@
   border: 1px solid #ced0da;
 
   a {
-    color: black;
+    color: #000;
   }
 
 }

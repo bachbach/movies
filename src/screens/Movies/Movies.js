@@ -25,7 +25,7 @@ const Movies = (props) => {
   const onClickRow = (movie) => props.history.push(`/movies/${movie.imdbId}`)
 
   return (
-    <div className='movies'>
+    <div className="movies">
       <Table
         items={props.movies}
         headers={headers}
