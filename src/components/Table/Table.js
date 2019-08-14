@@ -30,7 +30,7 @@ const Table = props => {
   ))
 
   const onClickRow = item => () => props.onClickRow(item)  
-
+  //@TODO Bug: oridinalnumber always starts from 0. Probably keeping in reducer all the stuff will fix it. 
   const getBody = () => {
     return props.items.map((item, index) => (
       <tr
